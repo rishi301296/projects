@@ -1,34 +1,8 @@
 import re
 import urllib2 as U
 from BeautifulSoup import BeautifulSoup as B
-
-class Time:
-    def __init__(self, hh, mm, ss):
-        self.hh=hh
-        self.mm=mm
-        self.ss=ss
-
-    def show_time(self):
-        return [self.hh, self.mm, self.ss]
-
-    @classmethod
-    def from_string(cls, t):
-        t=map(int, t.split(':'))
-        return cls(t[0],t[1],t[2])
-
-class Date:
-    def __init__(self, dd, mm, yy):
-        self.dd=dd
-        self.mm={'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12}[mm]
-        self.yy=yy
-
-    def show_date(self):
-        return [self.dd,self.mm,self.yy]
-    
-    @classmethod
-    def from_string(cls, d):
-        d=map(str, d.split())
-        return cls(int(d[0]),d[1],int(d[2]))
+from Time import Time
+from Date import Date
 
 class Challange:
     def __init__(self, code, name, start_date, start_time, end_date, end_time):
@@ -103,7 +77,7 @@ c.getContentOfCodechef()
 #c.getContentOfHackerrank()
 
 
-for i in c.codechef['Ongoing']:
+for i in c.codechef['Upcoming']:
     print i.code
     print i.name
     print i.start_date.show_date()
