@@ -3,6 +3,9 @@ import urllib2 as U
 from BeautifulSoup import BeautifulSoup as B
 from Time import Time
 from Date import Date
+from Data import Data
+
+global data_obj
 
 class Challenge:
     def __init__(self, code, name, start_date, start_time, end_date, end_time):
@@ -32,12 +35,10 @@ class Contest:
             x=B(s)
             p=x('table', {'class':'dataTable'})[0]('td')
             for i in xrange(0,len(p),4):
-                chal=Challenge(p[i].text,p[i+1]('a')[0].text,Date.from_string(p[i+2].contents[0]),Time.from_string(p[i+2].contents[2]),Date.from_string(p[i+3].contents[0]),Time.from_string(p[i+3].contents[2]))
-                self.codechef['Ongoing'].append(chal)
+                data_obj.putData('codechef', p[i].text, p[i+1]('a')[0].text, Date.from_string(p[i+2].contents[0]), Time.from_string(p[i+2].contents[2]),Date.from_string(p[i+3].contents[0]),Time.from_string(p[i+3].contents[2]))
             p=x('table', {'class':'dataTable'})[1]('td')
             for i in xrange(0,len(p),4):
-                chal=Challenge(p[i].text,p[i+1]('a')[0].text,Date.from_string(p[i+2].contents[0]),Time.from_string(p[i+2].contents[2]),Date.from_string(p[i+3].contents[0]),Time.from_string(p[i+3].contents[2]))
-                self.codechef['Upcoming'].append(chal)
+                data_obj.putData('codechef', p[i].text, p[i+1]('a')[0].text, Date.from_string(p[i+2].contents[0]), Time.from_string(p[i+2].contents[2]),Date.from_string(p[i+3].contents[0]),Time.from_string(p[i+3].contents[2]))
         except:
             print '404 Codechef not available!!!'
 
@@ -73,11 +74,11 @@ class Contest:
         except:
             print '404 Hackerrank not available!!!'
 
+data_obj=Data()
 c=Contest()
 c.getContentOfCodechef()
 #c.getContentOfHackerrank()
-
-
+'''
 for i in c.codechef['Upcoming']:
     print i.code
     print i.name
@@ -86,4 +87,4 @@ for i in c.codechef['Upcoming']:
     print i.end_date.show_date()
     print i.end_time.show_time()
     print ''
-
+'''
