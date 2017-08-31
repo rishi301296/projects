@@ -13,6 +13,7 @@ class Challange:
         self.end_date=end_date
         self.end_time=end_time
 
+
 class Contest:
     def __init__(self):
         self.codechef={'Ongoing':[],'Upcoming':[]}
