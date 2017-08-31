@@ -6,6 +6,15 @@ class Time:
         self.mm=mm
         self.ss=ss
 
+    def get_hour(self):                 #return hour
+        return self.hh
+
+    def get_minute(self):               #return minute
+        return self.mm
+
+    def get_second(self):               #return seconds
+        return self.ss
+
     def show_time(self):                #to show time
         return [self.hh, self.mm, self.ss]
     

@@ -9,7 +9,7 @@ class Date:
             self.mm=int(mm)
         self.yy=yy
 
-    def get_date(self):                     #return date
+    def get_day(self):                     #return date
         return self.dd
 
     def get_month(self):                    #return month
