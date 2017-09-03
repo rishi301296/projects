@@ -3,9 +3,9 @@
 class Date:
     def __init__(self, dd, mm, yy):         #date constructor to initialize date, month, year
         self.dd=dd
-        if type(mm)==str:
+        try:
             self.mm={'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12}[mm]
-        else:
+        except:
             self.mm=int(mm)
         self.yy=yy
 
@@ -27,4 +27,6 @@ class Date:
         if ':' in d:    c=':'
         elif '-' in d:  c='-'
         d=map(str, d.split(c))
-        return cls(int(d[0]),d[1],int(d[2]))
+        if len(d[2])==4:
+            return cls(int(d[0]),d[1],int(d[2]))
+        return cls(int(d[2]),d[1],int(d[0]))
